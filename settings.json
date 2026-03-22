@@ -1,0 +1,16 @@
+{
+  "model": "opus",
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ". ~/.claude/logs.conf && sleep $SLEEP_SEC && LATEST=$(find \"$JSONL_DIR\" -name '*.jsonl' -type f -exec stat -f '%m %N' {} + 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-) && [ -f \"$LATEST\" ] && python3 \"$CONVERT_SCRIPT\" \"$LATEST\" \"$LOGS_DIR\""
+          }
+        ]
+      }
+    ]
+  }
+}
